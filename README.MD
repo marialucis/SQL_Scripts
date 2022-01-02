@@ -1,1 +1,0 @@
-### Repositorio com Scripts SQL
