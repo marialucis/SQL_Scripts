@@ -1,0 +1,50 @@
+/*FUNCOES DE DATAS- ADICIONANDO DATAS*/
+USE sakila;
+SELECT last_update, ADDDATE(last_update, "5 Days"),
+ADDDATE(last_update, INTERVAL 2 MONTH),
+ADDDATE(last_update, INTERVAL -3 YEAR)
+FROM actor;
+
+/*DATEDIFF PARA CALCULAR A DIFERENÇA ENTRE AS DATAS*/
+SELECT DATEDIFF(ADDDATE(last_update, INTERVAL 2 MONTH), last_update) AS 'Diferença em dias'
+FROM actor;
+
+
+/*ADDTIME A FUCAO ADICIONA OU REMOVE UM TEMPO A UMA DATA
+PODEMOS ULTILIZAR O FORMATO: YYYY-MM-DD HH:MM:SS
+*/
+SELECT * FROM actor;
+SELECT *, ADDTIME(last_update, "5 03:00:00")
+FROM actor
+WHERE actor_id > 20;
+
+
+/*DATE_FORMAT- FORMATANDO DATAS COM DATE_FORMAT*/
+SELECT * FROM actor;
+SELECT DATE_FORMAT(last_update, "%Y") AS ano ,
+DATE_FORMAT(last_update, "%d/%m/%Y") AS data_formtada
+FROM actor;
+
+/*DAY- FUNCAO QE RETORNA O DIA DA DATA */
+SELECT last_update, DAY(last_update) FROM actor;
+
+
+/*DAYOFWEEK- IDENTIFICAR DIA DA SEMANA*/
+SELECT last_update, DAYOFWEEK(last_update) FROM actor;
+
+/*DAYOFYEAR- RETORNA O DIA DO ANO DE UMA DETERMINADA DATA*/
+SELECT last_update, DAYOFYEAR(last_update) FROM actor;
+
+
+/*WEEKOFYEAR- RETORNA A SEMANA DO ANO DE UMA DETERMINADA DATA*/
+SELECT last_update, WEEKOFYEAR(last_update) AS semana
+FROM actor;
+
+/*MONTH EXTRAI O MES DE UMA DATA*/
+SELECT last_update, MONTH(last_update) AS mes
+FROM actor;
+
+/*YEAR EXTRAI O ANO DE UMA DETERMINADA DATA*/
+SELECT last_update, YEAR(last_update) AS ano
+FROM actor;
+

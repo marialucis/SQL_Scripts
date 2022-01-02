@@ -1,1 +1,1 @@
-### Repositoria com Scripts SQL
+### Repositorio com Scripts SQL
