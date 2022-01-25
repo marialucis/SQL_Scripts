@@ -1,2 +1,2 @@
-# Repositorio com Scripts SQL utilzados em SGBD ORACLE e MYSQL
+# Repositorio com Scripts SQL utilizados em SGBD ORACLE e MYSQL
 
