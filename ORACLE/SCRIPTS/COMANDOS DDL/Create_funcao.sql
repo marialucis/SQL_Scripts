@@ -15,3 +15,14 @@ BEGIN
     SELECT DESCRICAO INTO v_DESCRICAO FROM SEGMERCADO WHERE ID = p_ID;
     RETURN v_DESCRICAO;
 END;
+
+
+
+-- Para chamar uma funcao
+SET SERVEROUTPUT ON 
+DECLARE
+    v_DESCRICAO segmercado.descricao%TYPE;
+BEGIN
+    v_descricao := obter_descricao_segmercado(2);
+    DBMS_OUTPUT.put_line('A descrição do Segmento de mercado é '|| v_DESCRICAO) ;
+END;

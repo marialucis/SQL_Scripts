@@ -1,3 +1,7 @@
+--Parâmetros IN – passamos o valor na própria procedure.
+--Parâmetros OUT – recebemos o valor a partir da chamada de blocos externos.
+--Parâmetros IN OUT – passamos um valor inicial para a procedure e recebemos de volta uma atualização.
+
 /*Criando procedure/rotina pra inclusao de dados na tabela cliente*/
 CREATE
 OR REPLACE PROCEDURE INCLUIR_SEGMERCADO (
@@ -84,3 +88,29 @@ IS
 BEGIN
     p_CNPJ := SUBSTR(p_cnpj, 1,2) || '.' || SUBSTR(p_CNPJ,3,3) || '.' || SUBSTR(p_CNPJ,6,3) || '/'|| SUBSTR(p_CNPJ,9,4) || '-' || SUBSTR(p_CNPJ,13,2);
 END;
+
+
+--PROCEDURE PARA ATUALIZAR O CNPJ DO CLIENTE A PARTIR DO ID
+create or replace PROCEDURE atualizar_cnpj_cliente (
+ p_id IN  cliente.id%TYPE, p_cnpj IN  cliente.cnpj%TYPE)
+IS
+    v_CNPJ CLIENTE.CNPJ%type := p_CNPJ; --declarando a variavel v_cnpj para receber p_cnpj e realizar a formatação 
+BEGIN
+    formata_cnpj(v_cnpj);
+    UPDATE CLIENTE SET CNPJ = v_cnpj
+    WHERE ID = p_id;
+    COMMIT;
+END;
+
+
+--PROCEDURE PARA DELETAR O CLIENTE A PARTIR DO ID
+create or replace PROCEDURE Deletar_cliente (
+ p_id IN  cliente.id%TYPE)
+IS
+    
+BEGIN
+   DELETE FROM CLIENTE 
+    WHERE ID = p_id;
+    COMMIT;
+END;
+
