@@ -90,6 +90,19 @@ BEGIN
 END;
 
 
+
+--PROCEDURA PARA FORMATAR O CPF
+create or replace PROCEDURE formata_cpf
+(   p_CPF IN OUT CLIENTE.CPF%type)
+
+IS
+BEGIN
+    p_CPF := SUBSTR(p_CPF,1,3) || '.' || SUBSTR(p_CPF,4,3) || '.' || SUBSTR(p_CPF,7,3) || '-' ||SUBSTR(p_CPF,10,2);
+END;
+
+
+
+
 --PROCEDURE PARA ATUALIZAR O CNPJ DO CLIENTE A PARTIR DO ID
 create or replace PROCEDURE atualizar_cnpj_cliente (
  p_id IN  cliente.id%TYPE, p_cnpj IN  cliente.cnpj%TYPE)
@@ -108,6 +121,25 @@ ex:execute atualizar_cnpj_cliente(5,54375233000106);
 
 
 
+
+--Para executar a procedure atualizar_cpf_cliente
+create or replace  PROCEDURE atualizar_cpf_cliente (
+ p_id IN  cliente.id%TYPE, p_cpf IN  cliente.cpf%TYPE)
+IS
+    v_CPF CLIENTE.CPF%type := p_CPF; --declarando a variavel v_cpf para receber p_cpf e realizar a formatação 
+BEGIN
+    formata_cpf(v_cpf);
+    UPDATE CLIENTE SET CPF = v_cpf
+    WHERE ID = p_id;
+    COMMIT;
+END;
+
+--Para executar a procedure atualizar_cnpj_cliente passando os parametros
+execute atualizar_cpf_cliente(p_id,p_cpf);
+ex:execute atualizar_cpf_cliente(1,64789259005);
+
+
+
 --PROCEDURE PARA DELETAR O CLIENTE A PARTIR DO ID
 create or replace PROCEDURE Deletar_cliente (
  p_id IN  cliente.id%TYPE)
@@ -122,4 +154,19 @@ END;
 --Para executar a procedure deletar_cliente passando os parametros
 execute deletar_cliente(p_id);  
 ex:execute deletar_cliente(1)  
+
+
+
+
+--PROCEDURE PARA FORMATAR CNPJ_CPF
+
+create or replace  PROCEDURE formata_cnpj_cpf
+(   p_CNPJ IN OUT CLIENTE.CNPJ%type, p_CPF IN OUT CLIENTE.CPF%TYPE )
+
+IS
+BEGIN
+    p_CNPJ := SUBSTR(p_cnpj, 1,2) || '.' || SUBSTR(p_CNPJ,3,3) || '.' || SUBSTR(p_CNPJ,6,3) || '/'|| SUBSTR(p_CNPJ,9,4) || '-' || SUBSTR(p_CNPJ,13,2);
+    p_CPF := SUBSTR(p_CPF,1,3) || '.' || SUBSTR(p_CPF,3,3) || '.' || SUBSTR(p_CPF,6,3) || '-' ||SUBSTR(p_CPF,9,4);
+END;
+
 
