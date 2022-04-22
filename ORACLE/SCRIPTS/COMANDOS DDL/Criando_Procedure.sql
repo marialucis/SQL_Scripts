@@ -102,6 +102,11 @@ BEGIN
     COMMIT;
 END;
 
+--Para executar a procedure atualizar_cnpj_cliente passando os parametros
+execute atualizar_cnpj_cliente(p_id,p_cnpj);
+ex:execute atualizar_cnpj_cliente(5,54375233000106);
+
+
 
 --PROCEDURE PARA DELETAR O CLIENTE A PARTIR DO ID
 create or replace PROCEDURE Deletar_cliente (
@@ -113,4 +118,8 @@ BEGIN
     WHERE ID = p_id;
     COMMIT;
 END;
+
+--Para executar a procedure deletar_cliente passando os parametros
+execute deletar_cliente(p_id);  
+ex:execute deletar_cliente(1)  
 
