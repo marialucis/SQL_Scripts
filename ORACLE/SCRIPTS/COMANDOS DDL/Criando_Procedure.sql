@@ -134,7 +134,7 @@ BEGIN
     COMMIT;
 END;
 
---Para executar a procedure atualizar_cnpj_cliente passando os parametros
+--Para executar a procedure atualizar_cpf_cliente passando os parametros
 execute atualizar_cpf_cliente(p_id,p_cpf);
 ex:execute atualizar_cpf_cliente(1,64789259005);
 
