@@ -23,3 +23,4 @@
 -   Criando função;
 
 
+- Procedimento armazenado (Stored procedure)
